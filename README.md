@@ -1,5 +1,5 @@
 # digitaltwinexpert
-digitial twin expert seeker base model
+digitial twin expert seeker high level implementation
 
 # Digital Twin Scraper
 
