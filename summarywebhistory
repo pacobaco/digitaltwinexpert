@@ -1,0 +1,56 @@
+import os
+import sqlite3
+import datetime
+from collections import Counter
+import openai
+
+# Path to Chrome history database (Windows example)
+HISTORY_DB = os.path.expanduser("~") + r"\AppData\Local\Google\Chrome\User Data\Default\History"
+
+# Copy history file to avoid database lock issue
+TEMP_DB = "temp_history"
+os.system(f'copy "{HISTORY_DB}" "{TEMP_DB}" >nul 2>&1')
+
+def get_today_history():
+    conn = sqlite3.connect(TEMP_DB)
+    cursor = conn.cursor()
+    
+    today_start = datetime.datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+    today_start_timestamp = int(today_start.timestamp() * 1000000)
+    
+    cursor.execute("""
+        SELECT urls.url, urls.title FROM urls
+        JOIN visits ON urls.id = visits.url
+        WHERE visits.visit_time > ?
+    """, (today_start_timestamp,))
+    
+    history = cursor.fetchall()
+    conn.close()
+    
+    return history
+
+def summarize_history(history):
+    domains = [url.split('/')[2] for url, _ in history if '/' in url]
+    domain_counts = Counter(domains)
+    
+    summary = "Websites visited today:\n"
+    for domain, count in domain_counts.most_common(10):
+        summary += f"- {domain}: {count} times\n"
+    
+    return summary
+
+def generate_ai_summary(summary_text):
+    openai.api_key = "your_openai_api_key"
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "system", "content": "Summarize the following browsing history report succinctly."},
+                  {"role": "user", "content": summary_text}]
+    )
+    return response["choices"][0]["message"]["content"]
+
+if __name__ == "__main__":
+    history = get_today_history()
+    summary = summarize_history(history)
+    ai_summary = generate_ai_summary(summary)
+    print(ai_summary)
+    os.remove(TEMP_DB)  # Cleanup temporary file
