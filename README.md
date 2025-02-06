@@ -25,7 +25,7 @@ The **Digital Twin Expert** is a Python-based tool that scrapes social media, co
 1. Clone this repository:
    ```sh
    git clone https://github.com/your-username/digitaltwinexpert.git
-   cd digital-twin-scraper
+   cd digitaltwinexpert
 
 
 digital-twin-scraper/
