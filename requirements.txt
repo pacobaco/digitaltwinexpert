@@ -1,0 +1,10 @@
+Flask
+requests
+beautifulsoup4
+nltk
+pytesseract
+Pillow
+pdfplumber
+python-docx
+imapclient
+langdetect
