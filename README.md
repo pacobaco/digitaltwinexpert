@@ -1,76 +1,48 @@
-# digitaltwinexpert
-digitial twin expert seeker high level implementation
-
 # Digital Twin Scraper
 
-## Overview
-The Digital Twin Scraper is a Python-based software that collects and organizes data from various sources, including social media, documents, and emails, to create a queryable corpus representing a worker's digital twin. Additionally, it supports worker authentication, profile management, and scheduling in-person meetings with talking points.
+The **Digital Twin Scraper** is a Python-based tool that scrapes social media, collects documents, extracts text from images, and fetches emails into a queryable corpus representing a worker's digital twin. It includes a meeting scheduler with topic-based talking points.
 
 ## Features
-- **Authentication System:** Secure worker authentication.
-- **Profile Management:** Store and update worker pay rate, schedule, and employee type.
-- **Data Collection:**
-  - Scrapes social media pages for relevant content.
-  - Collects documents and stores their content.
-  - Fetches and processes emails.
-- **Corpus Querying:** Enables keyword-based searches within the collected data.
-- **Meeting Scheduler:** Allows scheduling in-person meetings with automatically generated talking points based on the query.
+
+- **Social Media Scraper:** Extracts text and sentiment analysis from social media pages.
+- **Document Ingestion:** Supports text, PDF, and DOCX file processing.
+- **OCR Support:** Extracts text from images.
+- **Email Retrieval:** Fetches emails via IMAP.
+- **Query System:** Allows keyword-based searches within the digital twin corpus.
+- **Meeting Scheduler:** Schedules in-person meetings with relevant talking points.
+- **Multilingual Support:** Detects and processes multiple languages.
 
 ## Installation
-1. Clone the repository:
+
+### Prerequisites
+
+- Python 3.7+
+- Virtual environment (recommended)
+- Required dependencies (install via pip)
+
+### Setup
+
+1. Clone this repository:
    ```sh
-   git clone https://github.com/yourrepo/digital-twin-scraper.git
+   git clone https://github.com/your-username/digital-twin-scraper.git
    cd digital-twin-scraper
-   ```
-2. Install dependencies:
-   ```sh
-   pip install -r requirements.txt
-   ```
-
-## Usage
-### Initializing the Digital Twin
-```python
-from digital_twin_scraper import DigitalTwin
-
-dt = DigitalTwin("worker123")
-```
-
-### Authentication
-```python
-dt.authenticate("valid_token")
-```
-
-### Updating Worker Profile
-```python
-dt.update_profile(25.50, "9AM-5PM", "Full-time")
-```
-
-### Scraping Social Media
-```python
-dt.scrape_social_media(["https://example.com/social-profile"])
-```
-
-### Collecting Documents
-```python
-dt.collect_documents(["/path/to/document.txt"])
-```
-
-### Fetching Emails
-```python
-dt.fetch_emails("worker@example.com", "password")
-```
-
-### Querying Corpus
-```python
-print(dt.query_corpus("project update"))
-```
-
-### Scheduling a Meeting
-```python
-print(dt.schedule_meeting("2023-12-15 10:00", "Conference Room A", "project update"))
-```
-
-## License
-This project is licensed under the MIT License.
 
 
+digital-twin-scraper/
+│── src/
+│   ├── main.py                 # Main entry point for application
+│   ├── digital_twin.py          # Core Digital Twin functionality
+│   ├── social_scraper.py        # Social media scraper logic
+│   ├── document_processor.py    # Document processing logic
+│   ├── ocr_extractor.py         # OCR for image text extraction
+│   ├── email_fetcher.py         # Email retrieval logic
+│   ├── meeting_scheduler.py     # Meeting scheduling system
+│── data/                        # Storage for scraped and processed data
+│── tests/                       # Unit tests for different components
+│── requirements.txt             # Python dependencies
+│── Dockerfile                   # Containerization configuration
+│── .github/
+│   ├── workflows/
+│   │   ├── deploy.yml           # GitHub Actions deployment workflow
+│── README.md                    # Documentation
+│── .gitignore                    # Git ignore file
