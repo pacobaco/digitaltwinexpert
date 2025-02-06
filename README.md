@@ -1,6 +1,6 @@
-# Digital Twin Scraper
+# Digital Twin Expert
 
-The **Digital Twin Scraper** is a Python-based tool that scrapes social media, collects documents, extracts text from images, and fetches emails into a queryable corpus representing a worker's digital twin. It includes a meeting scheduler with topic-based talking points.
+The **Digital Twin Expert** is a Python-based tool that scrapes social media, collects documents, extracts text from images, and fetches emails into a queryable corpus representing a worker's digital twin. It includes a meeting scheduler with topic-based talking points.
 
 ## Features
 
@@ -24,7 +24,7 @@ The **Digital Twin Scraper** is a Python-based tool that scrapes social media, c
 
 1. Clone this repository:
    ```sh
-   git clone https://github.com/your-username/digital-twin-scraper.git
+   git clone https://github.com/your-username/digitaltwinexpert.git
    cd digital-twin-scraper
 
 
